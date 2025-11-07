@@ -10,6 +10,11 @@ Para configurar el proyecto localmente, sigue estos pasos:
 ### Prerrequisitos
 * Node.js 
 * NPM 
+* Express
+* Sequelize 
+* Postgres
+* typescript  
+* Dotenv
 
 ### Pasos
 1. Clona el repositorio:
