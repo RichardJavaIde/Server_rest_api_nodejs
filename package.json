@@ -1,0 +1,33 @@
+{
+  "name": "server_rest_api_nodejs",
+  "version": "1.0.0",
+  "description": "proyecto con rest api express y typescript",
+  "homepage": "https://github.com/RichardJavaIde/Server_rest_api_nodejs#readme",
+  "bugs": {
+    "url": "https://github.com/RichardJavaIde/Server_rest_api_nodejs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RichardJavaIde/Server_rest_api_nodejs.git"
+  },
+  "license": "ISC",
+  "author": "Richard Duran",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.7"
+  }
+}
