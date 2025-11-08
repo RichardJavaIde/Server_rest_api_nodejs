@@ -1,5 +1,8 @@
 import server from './server'
+import colors from 'colors'
 
-server.listen(4015, () => {
- console.log('Server is running on http://localhost:4015')
+const port = process.env.PORT || 4015
+
+server.listen(port, () => {
+ console.log(colors.blue.bold(`Server is running on http://localhost:${port}`))
 })     
