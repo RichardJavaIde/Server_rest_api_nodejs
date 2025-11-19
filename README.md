@@ -15,7 +15,8 @@ Para configurar el proyecto localmente, sigue estos pasos:
 * Postgres
 * typescript  
 * Dotenv
-* thunder client
+* express validator
+
 
 ### Pasos
 1. Clona el repositorio:
