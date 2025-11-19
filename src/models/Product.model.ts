@@ -13,7 +13,7 @@ class Product extends Model {
     })  
     price: number;
 
-   
+    @Default(true)
     @Column(DataType.BOOLEAN)
     availability: boolean;
 }
