@@ -32,3 +32,23 @@ export const crearProduct = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Error creating product' });
     }
 }
+
+export const UpdateProduct = async (req: Request, res: Response) => {
+    
+
+    try {
+        const { id } = req.params;
+        const product =  await Product.findOne({ where: { id, availability: true } });
+        if (product) {
+            // Update product fields
+            await product.update(req.body);
+            await product.save();
+
+           res.json({data:product})
+        } else {
+            res.status(404).json({ error: 'Product not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error fetching products' });
+    }
+}
