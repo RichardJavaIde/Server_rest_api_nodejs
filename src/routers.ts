@@ -1,5 +1,5 @@
 import {Router}  from 'express'
-import { crearProduct, getProductById, getProducts, UpdateProduct } from './handlers/product'
+import { crearProduct, getProductById, getProducts, UpdateAvailability, UpdateProduct } from './handlers/product'
 import {body, param } from 'express-validator'
 import { handleInputErrors } from './middleware'
 
@@ -42,6 +42,13 @@ router.post('/products',
     body('availability').isBoolean().withMessage('Availability must be a boolean'),
   handleInputErrors,
 UpdateProduct)
+
+//modify availability
+router.patch('/products/:id',
+  //Validation middleware
+  param('id').isNumeric().withMessage('ID is not valid'),
+  handleInputErrors,
+  UpdateAvailability)
 
   //Delete product
   router.delete('/products/:id',
