@@ -16,6 +16,7 @@ Para configurar el proyecto localmente, sigue estos pasos:
 * typescript  
 * Dotenv
 * express validator
+* swagger-jsdoc swagger-ui-express
 
 
 ### Pasos

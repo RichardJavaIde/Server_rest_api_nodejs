@@ -2,6 +2,8 @@ import express  from 'express'
 import router from './routers'
 import db from './config/db'
 import colors from 'colors'
+import swaggerUI from 'swagger-ui-express'
+import swaggerSpec from './config/swagger'
 
 //Test DB connection
 async function connectDB() {
@@ -22,5 +24,6 @@ server.use(express.json())
 
 server.use('/', router)
 server.use('/products', router)
+server.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 
 export default server
