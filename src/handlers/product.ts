@@ -72,3 +72,17 @@ export const UpdateAvailability = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Error fetching products' });
     }
 }
+
+export const deleteProduct = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;      
+        const deletedCount = await Product.destroy({ where: { id } });
+        if (deletedCount) {
+            res.json({ message: 'Product deleted successfully' });  
+        } else {
+            res.status(404).json({ error: 'Product not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error deleting product' });
+    }
+}
