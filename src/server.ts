@@ -22,7 +22,7 @@ const server = express()
 //Leer datos de body
 server.use(express.json())
 
-server.use('/', router)
+//server.use('/', router)
 server.use('/products', router)
 server.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 

@@ -5,19 +5,81 @@ import { handleInputErrors } from './middleware'
 
 
 const router = Router()
+/**
+ * @swagger
+ *components:
+ *  schemas:
+ *     Product:  
+ *       type: object
+ *       properties:
+ *         id:  
+ *          type: integer
+ *          description: The product ID
+ *          example: 1
+ *         name:
+ *          type: string
+ *          description: The product name
+ *          example: "Mause Gamer"
+ *         price:
+ *          type: number
+ *          description: The price of the product
+ *          example: 250
+ *         availability:
+ *          type: boolean
+ *          description: The availability status of the product
+ *          example: true
+ */
 
-//Routes
-//Get all products
-router.get('/products', getProducts)
+/**
+ * @swagger
+ * /products:
+ *   get:
+ *     summary: Retrieve a list of products
+ *     tags: [Products]
+ *     description: Retrieve a list of products from the database
+ *     responses:
+ *       200:
+ *         description: A JSON array of product objects
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Product'
+ */
+router.get('/', getProducts)
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   get:
+ *     summary: Get a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The product ID
+ *     responses:
+ *       200:
+ *         description: A product object
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Product not found
+ */
 //Get product by id
-router.get('/products/:id',//validar
+router.get('/:id',//validar
 param('id').isNumeric().withMessage('ID is not valid'),
 handleInputErrors
 , getProductById)
 
 //Create product
-router.post('/products',
+router.post('/',
   //Validation middleware
   body('name').notEmpty().withMessage('Name is required'),
   body('price').notEmpty().withMessage('Price is required')
@@ -27,12 +89,12 @@ router.post('/products',
   crearProduct)
 
   //Update product
-  router.patch('/products/:id',
+  router.patch('/:id',
   //Validation middleware
   param('id').isNumeric().withMessage('ID is not valid'),
   handleInputErrors,)
 
-  router.put('/products/:id',
+  router.put('/:id',
   //Validation middleware
   param('id').isNumeric().withMessage('ID is not valid'),
   body('name').notEmpty().withMessage('Name is required'),
@@ -44,14 +106,14 @@ router.post('/products',
 UpdateProduct)
 
 //modify availability
-router.patch('/products/:id',
+router.patch('/:id',
   //Validation middleware
   param('id').isNumeric().withMessage('ID is not valid'),
   handleInputErrors,
   UpdateAvailability)
 
   //Delete product
-  router.delete('/products/:id',
+  router.delete('/:id',
   //Validation middleware
   param('id').isNumeric().withMessage('ID is not valid'),
   handleInputErrors,)
