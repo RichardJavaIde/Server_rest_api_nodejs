@@ -71,12 +71,43 @@ router.get('/', getProducts)
  *               $ref: '#/components/schemas/Product'
  *       404:
  *         description: Product not found
+ *       400:
+ *         description: Invalid ID supplied
  */
 //Get product by id
 router.get('/:id',//validar
 param('id').isNumeric().withMessage('ID is not valid'),
 handleInputErrors
 , getProductById)
+
+/**
+ * @swagger
+ * /products:
+ *  post:
+ *    summary: Create a new product
+ *    tags: [Products]
+ *    description: Create a new product with the provided name and price
+ *    requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *          schema:
+ *           type: object
+ *           properties:
+ *              name:
+ *               type: string
+ *               example: "Keyboard"
+ *              price:
+ *                type: number 
+ *                example: 100
+ *    responses:
+ *     201:
+ *      description: Product created successfully
+ *     400:
+ *      description: Invalid input data
+ * 
+ * 
+ */
 
 //Create product
 router.post('/',
