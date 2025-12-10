@@ -125,6 +125,49 @@ router.post('/',
   param('id').isNumeric().withMessage('ID is not valid'),
   handleInputErrors,)
 
+/**
+ * @swagger
+ * /products/{id}:
+ *   put:
+ *     summary: Update a product
+ *     tags: [Products]
+ *     description: Update the details of an existing product
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *          schema:
+ *           type: object
+ *           properties:
+ *              name:
+ *               type: string
+ *               example: "Keyboard"
+ *              price:
+ *                type: number 
+ *                example: 100
+ *              availability:
+ *                type: boolean
+ *                example: true
+ *     responses:
+ *          200:
+ *            description: Product created successfully
+ *            content:
+ *              application/json:
+ *                schema:
+ *                  $ref: '#/components/schemas/Product'
+ *          400:
+ *            description: Invalid input data
+ *          404:
+ *           description: Product not found  
+ *         
+ */
+
   router.put('/:id',
   //Validation middleware
   param('id').isNumeric().withMessage('ID is not valid'),
