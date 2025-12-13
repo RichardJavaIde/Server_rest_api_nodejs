@@ -1,5 +1,5 @@
 import {Router}  from 'express'
-import { crearProduct, getProductById, getProducts, UpdateAvailability, UpdateProduct } from './handlers/product'
+import { crearProduct, getProductById, getProducts, UpdateAvailability, UpdateProduct,deleteProduct } from './handlers/product'
 import {body, param } from 'express-validator'
 import { handleInputErrors } from './middleware'
 
@@ -179,6 +179,33 @@ router.post('/',
   handleInputErrors,
 UpdateProduct)
 
+
+/**
+ * @swagger
+ * /products/{id}:
+ *   patch:
+ *        summary: Modify product availability
+ *        tags: [Products]
+ *        description: Modify the availability status of a product
+ *        parameters:
+ *           - in: path
+ *             name: id
+ *             required: true
+ *             schema:
+ *                type: integer
+ *        responses:
+ *          200:
+ *            description: Product modify successfully
+ *            content:
+ *              application/json:
+ *                schema:
+ *                  $ref: '#/components/schemas/Product'
+ *          400:
+ *            description: Invalid input data
+ *          404:
+ *           description: Product not found  
+ */
+
 //modify availability
 router.patch('/:id',
   //Validation middleware
@@ -186,10 +213,37 @@ router.patch('/:id',
   handleInputErrors,
   UpdateAvailability)
 
+  /**
+ * @swagger
+ * /products/{id}:
+ *   delete:
+ *        summary: Delete a product by ID
+ *        tags: [Products]
+ *        description: Delete a product from the database using its ID
+ *        parameters:
+ *           - in: path
+ *             name: id
+ *             required: true
+ *             schema:
+ *                type: integer
+ *        responses:
+ *          200:
+ *            description: Product delete successfully
+ *            content:
+ *              application/json:
+ *                schema:
+ *                  type: string
+ *                  value: "Product deleted successfully"
+ *          400:
+ *            description: Invalid input data
+ *          404:
+ *           description: Product not found  
+ */
+
   //Delete product
   router.delete('/:id',
   //Validation middleware
   param('id').isNumeric().withMessage('ID is not valid'),
-  handleInputErrors,)
+  handleInputErrors, deleteProduct)
    
 export default router
