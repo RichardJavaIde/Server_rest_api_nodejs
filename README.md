@@ -17,6 +17,7 @@ Para configurar el proyecto localmente, sigue estos pasos:
 * Dotenv
 * express validator
 * swagger-jsdoc swagger-ui-express
+* cors
 
 
 ### Pasos
